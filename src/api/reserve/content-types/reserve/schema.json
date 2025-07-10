@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reserves",
+  "info": {
+    "singularName": "reserve",
+    "pluralName": "reserves",
+    "displayName": "Reserve",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "clientName": {
+      "type": "string"
+    },
+    "bookingDate": {
+      "type": "date"
+    },
+    "quantityPeople": {
+      "type": "integer"
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "reserveSlug": {
+      "type": "uid",
+      "targetField": "clientName"
+    },
+    "statusReserve": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "confirmed",
+        "cancelled"
+      ]
+    },
+    "excursion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::excursion.excursion",
+      "inversedBy": "reserve"
+    }
+  }
+}

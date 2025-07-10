@@ -1,0 +1,104 @@
+{
+  "kind": "collectionType",
+  "collectionName": "excursions",
+  "info": {
+    "singularName": "excursion",
+    "pluralName": "excursions",
+    "displayName": "Excursion",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "description": {
+      "type": "blocks",
+      "required": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "price": {
+      "type": "integer"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "excursions"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true,
+      "maxLength": 140,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "quantityPeople": {
+      "type": "integer",
+      "max": 10,
+      "min": 1,
+      "required": true
+    },
+    "reserves": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reserve.reserve"
+    },
+    "reserve": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reserve.reserve",
+      "mappedBy": "excursion"
+    },
+    "availabilities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::availability.availability",
+      "mappedBy": "excursion"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

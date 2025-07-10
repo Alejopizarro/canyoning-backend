@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "availabilities",
+  "info": {
+    "singularName": "availability",
+    "pluralName": "availabilities",
+    "displayName": "Availability",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "excursion": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::excursion.excursion",
+      "inversedBy": "availabilities"
+    },
+    "date": {
+      "required": true,
+      "type": "date"
+    },
+    "availableSpots": {
+      "type": "integer",
+      "min": 0
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
